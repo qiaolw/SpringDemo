@@ -1,0 +1,37 @@
+version '1.0'
+apply plugin: 'java'
+apply plugin: 'war'
+
+
+repositories {
+    mavenCentral()
+}
+
+webAppDirName = "$projectDir/web"
+
+sourceSets{
+    main {
+       java.srcDirs = ['src/main', 'web']
+//        resources {
+//            srcDir 'web/WEB-INF' //资源目录
+//        }
+    }
+}
+
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compileOnly 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.springframework:spring-webmvc:4.3.18.RELEASE'
+}
+
+task hello{
+    doLast{
+        println "Hello World"
+    }
+}
