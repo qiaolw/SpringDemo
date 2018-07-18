@@ -1,9 +1,12 @@
 package com.qob;
 
+import com.qob.Dao.UserDao;
+import com.qob.Pojo.QBUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,10 +15,16 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("/hi")
 public class HelloController {
+    @Resource
+    UserDao mUserDao;
     @RequestMapping(value = "/say", method = RequestMethod.GET)
     public void printHello(HttpServletResponse response) {
         System.out.println("printHello");
         response.setHeader("content-type", "application/json;charset=UTF-8");
+
+        QBUser tUser = mUserDao.findUserById(100);
+        System.out.println("printHello " + tUser);
+
         try {
             PrintWriter out = response.getWriter();
             out.write("OK");
