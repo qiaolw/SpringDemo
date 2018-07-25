@@ -15,15 +15,13 @@ import java.io.PrintWriter;
 @Controller
 @RequestMapping("/hi")
 public class HelloController {
-    @Resource
-    UserDao mUserDao;
     @RequestMapping(value = "/say", method = RequestMethod.GET)
     public void printHello(HttpServletResponse response) {
         System.out.println("printHello");
         response.setHeader("content-type", "application/json;charset=UTF-8");
 
-        QBUser tUser = mUserDao.findUserById(100);
-        System.out.println("printHello " + tUser);
+//        QBUser tUser = mUserDao.findUserById(100);
+//        System.out.println("printHello " + tUser);
 
         try {
             PrintWriter out = response.getWriter();
