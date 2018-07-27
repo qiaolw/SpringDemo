@@ -12,6 +12,6 @@
     <title>小春论坛</title>
 </head>
 <body>
-${user.userName},欢迎您进入小春论坛，您当前积分为${user.credits};
+${user.userName},欢迎您进入小春论坛，您当前积分为${user.credits},你的ip为${user.lastIp},登录时间${user.lastVisit};
 </body>
 </html>

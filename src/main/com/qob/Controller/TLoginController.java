@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Controller
 public class TLoginController {
@@ -36,6 +37,7 @@ public class TLoginController {
         else {
             TUser user = userService.findUserByUserName(tUserName);
             user.setLastIp(request.getLocalAddr());
+            user.setLastVisit(new Date());
             userService.loginSuccess(user);
 
             request.getSession().setAttribute("user", user);
