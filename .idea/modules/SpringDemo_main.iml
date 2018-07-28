@@ -55,5 +55,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Gradle: org.springframework:spring-test:5.0.7.RELEASE" level="project" />
   </component>
 </module>
