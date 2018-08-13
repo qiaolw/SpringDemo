@@ -1,5 +1,6 @@
 package com.qob.Test;
 
+import com.qob.Service.TMoAttack;
 import com.qob.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,6 +11,8 @@ import org.testng.annotations.Test;
 public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
 
     private UserService userService;
+    @Autowired
+    private TMoAttack mMoAttack;
 
     public UserService getUserService() {
         return userService;
@@ -27,5 +30,10 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
         else {
             System.out.println("userService == null");
         }
+    }
+
+    @Test
+    public void testGeli(){
+        mMoAttack.cityGateAsk();
     }
 }
