@@ -1,11 +1,14 @@
 package com.qob.Test;
 
+import com.qob.Pojo.Color;
 import com.qob.Service.TMoAttack;
 import com.qob.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 @ContextConfiguration("classpath:applicationContext.xml")
 public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
@@ -35,5 +38,24 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
     @Test
     public void testGeli(){
         mMoAttack.cityGateAsk();
+    }
+
+    @Test
+    public void enumTest(){
+        int tCount = Color.RED.getCount();
+        Color tColorType = Color.BLANK;
+        switch (tColorType){
+            case RED:{
+                break;
+            }
+            case BLANK:{
+                break;
+            }
+            case GREEN:{
+                break;
+            }
+        }
+
+        assertEquals(tCount, 50);
     }
 }
