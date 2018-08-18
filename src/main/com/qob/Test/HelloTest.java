@@ -130,4 +130,11 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
         waiter.serveTo("John");
         seller.greetTo("John");
     }
+
+    @Test
+    public void testRegexMethodPointcutAdvisor(){
+        Waiter waiter = (Waiter)context.getBean("waiterPf");
+        waiter.greetTo("John");
+        waiter.serveTo("Bob");
+    }
 }

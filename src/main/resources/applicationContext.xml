@@ -54,6 +54,19 @@
     <bean id="waiterObj" parent="parent" p:target-ref="waiterTarget"/>
     <bean id="sellerObj" parent="parent" p:target-ref="sellerTarget"/>
 
+    <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+          p:advice-ref="greetingAdvice">
+        <property name="patterns">
+            <list>
+                <value>.*greet.*</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="waiterPf" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="regexpAdvisor"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true"/>
+
 
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     <property name="locations">
