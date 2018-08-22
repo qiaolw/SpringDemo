@@ -35,9 +35,9 @@
           p:interceptorNames="greetingAdvice,greetingAfter,greetingAround"
           p:target-ref="waiterTarget"/>
     <bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"
-    p:interceptorNames="transactionManagerException"
+          p:interceptorNames="transactionManagerException"
           p:proxyTargetClass="true"
-    p:target-ref="forumServiceTarget"/>
+          p:target-ref="forumServiceTarget"/>
     <bean id="pmonitor" class="com.qob.advice.ControllablePerformanceMonitor"/>
     <bean id="forumServiceTarget2" class="com.qob.Service.TForumServiceImpl"/>
     <bean id="forumService2" class="org.springframework.aop.framework.ProxyFactoryBean"
@@ -66,6 +66,11 @@
           p:interceptorNames="regexpAdvisor"
           p:target-ref="waiterTarget"
           p:proxyTargetClass="true"/>
+    <bean id="waiter752" class="com.qob.advice.NaiveWaiter"></bean>
+    <bean id="seller752" class="com.qob.advice.Seller"></bean>
+    <bean id="greetingAdvice752" class="com.qob.advice.GreetingBeforeAdvice"/>
+    <!--<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"-->
+          <!--p:beanNames="*er" p:interceptorNames="greetingAdvice752" p:optimize="true"/>-->
 
 
     <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">

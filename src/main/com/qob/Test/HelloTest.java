@@ -3,6 +3,14 @@ package com.qob.Test;
 import com.qob.Pojo.Color;
 import com.qob.Service.*;
 import com.qob.advice.*;
+import com.qob.aspectj.PreGreetingAspect;
+import org.aopalliance.aop.Advice;
+import org.springframework.aop.Advisor;
+import org.springframework.aop.aspectj.AspectJExpressionPointcut;
+import org.springframework.aop.aspectj.annotation.AspectJAdvisorFactory;
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
+import org.springframework.aop.aspectj.annotation.MetadataAwareAspectInstanceFactory;
+import org.springframework.aop.framework.AopConfigException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,7 +18,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -126,9 +136,9 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
     public void testStaticMethodMatcherPointcutAdvisor(){
         Waiter waiter = (Waiter)context.getBean("waiterObj");
         Seller seller = (Seller)context.getBean("sellerObj");
-        waiter.greetTo("John");
-        waiter.serveTo("John");
-        seller.greetTo("John");
+        waiter.greetTo("aaaJohnaaa");
+        waiter.serveTo("bbbJohnbbb");
+        seller.greetTo("cccJohnccc");
     }
 
     @Test
@@ -136,5 +146,27 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
         Waiter waiter = (Waiter)context.getBean("waiterPf");
         waiter.greetTo("John");
         waiter.serveTo("Bob");
+    }
+
+    @Test
+    public void testAutoProxyCreatorAdvisor(){
+        Waiter waiter = (Waiter)context.getBean("waiter752");
+        Seller seller = (Seller)context.getBean("seller752");
+
+        waiter.greetTo("John");
+        seller.greetTo("Tom");
+    }
+
+    @Test
+    public void testAspectJProxy(){
+        Waiter target = new NaiveWaiter();
+        AspectJProxyFactory factory = new AspectJProxyFactory();
+        factory.setTarget(target);
+
+        factory.addAspect(PreGreetingAspect.class);
+
+        Waiter proxy = factory.getProxy();
+        proxy.greetTo("John");
+        proxy.serveTo("John");
     }
 }

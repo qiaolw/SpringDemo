@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 public class GreetingAdvisor extends StaticMethodMatcherPointcutAdvisor {
     @Override
     public boolean matches(Method method, Class<?> targetClass) {
+//        System.out.println("GreetingAdvisor " + method.getName() + " targetClass " + targetClass.getName());
         return "greetTo".equals(method.getName());
     }
 

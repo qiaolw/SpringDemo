@@ -38,6 +38,7 @@ public class TLoginController {
             TUser user = userService.findUserByUserName(tUserName);
             user.setLastIp(request.getLocalAddr());
             user.setLastVisit(new Date());
+
             userService.loginSuccess(user);
 
             request.getSession().setAttribute("user", user);
