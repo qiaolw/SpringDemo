@@ -4,6 +4,7 @@ import com.qob.Pojo.Color;
 import com.qob.Service.*;
 import com.qob.advice.*;
 import com.qob.aspectj.PreGreetingAspect;
+import com.qob.quartz.SimpleTimerTask;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -21,6 +22,8 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static org.testng.Assert.assertEquals;
 
@@ -168,5 +171,13 @@ public class HelloTest extends AbstractTransactionalTestNGSpringContextTests {
         Waiter proxy = factory.getProxy();
         proxy.greetTo("John");
         proxy.serveTo("John");
+    }
+
+
+    @Test
+    public void timerTaskTest(){
+        Timer timer = new Timer();
+        TimerTask task = new SimpleTimerTask();
+        timer.schedule(task, 1000L, 5000L);
     }
 }

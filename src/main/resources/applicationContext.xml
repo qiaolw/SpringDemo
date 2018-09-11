@@ -106,4 +106,42 @@
         <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
     </aop:config>
 
+    <!-- 启动触发器的配置开始 -->
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="myJobTrigger" />
+            </list>
+        </property>
+    </bean>
+    <!-- 启动触发器的配置结束 -->
+    <!-- quartz-2.x的配置 -->
+    <bean id="myJobTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="myJobDetail" />
+        </property>
+        <property name="cronExpression">
+
+            <value>0/10 * *  * * ?</value>
+            <!--   <value>1 52 * * * ?</value>  -->
+        </property>
+    </bean>
+    <!-- 调度的配置结束 -->
+
+    <!-- job的配置开始 -->
+    <bean id="myJobDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="myJob" />
+        </property>
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+    </bean>
+    <!-- job的配置结束 -->
+
+    <!-- 工作的bean -->
+    <bean id="myJob" class="com.qob.quartz.jobTest" />
 </beans>

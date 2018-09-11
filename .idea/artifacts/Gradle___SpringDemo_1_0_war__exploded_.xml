@@ -37,6 +37,7 @@
           <element id="library" level="project" name="Gradle: c3p0:c3p0:0.9.1.1" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.6.6" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jcl:5.0.7.RELEASE" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/5.0.5.RELEASE/109c6bf2e869f055728219b361c78102de434158/spring-context-support-5.0.5.RELEASE.jar" />
         </element>
       </element>
     </root>
